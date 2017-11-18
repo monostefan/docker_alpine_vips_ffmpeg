@@ -1,12 +1,11 @@
 FROM alpine
 MAINTAINER Stefan Reinhard
 
-RUN \
-    # Add edge repos
-    echo '@edge http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
+# Add edge repos
+RUN echo '@edge http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 
-    # Update packages
-    apk update && apk upgrade && \
+# Update packages
+RUN apk --no-cache update && apk --no-cache upgrade
 
-    # Install packages
-    apk --no-cache add vips-dev@edge ffmpeg-dev@edge fftw-dev@edge g++@edge cmake@edge make@edge
+# Install packages
+RUN apk --no-cache add vips-dev@edge ffmpeg-dev@edge fftw-dev@edge g++@edge cmake@edge make@edge
